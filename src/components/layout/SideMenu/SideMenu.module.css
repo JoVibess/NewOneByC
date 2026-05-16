@@ -1,0 +1,28 @@
+.header {
+  position: fixed;
+  right: max(var(--content-gutter), calc((100vw - var(--content-max)) / 2));
+  top: 50px;
+  z-index: 100;
+}
+
+.menu {
+  width: 480px;
+  height: 650px;
+  background-color: var(--background);
+  border: 1px solid rgba(176, 90, 54, 0.18);
+  border-radius: 25px;
+  position: relative;
+  box-shadow: 0 28px 90px rgba(42, 43, 47, 0.18);
+}
+
+@media (max-width: 620px) {
+  .header {
+    top: 24px;
+    right: 24px;
+  }
+
+  .menu {
+    max-width: calc(100vw - 24px);
+    max-height: calc(100vh - 24px);
+  }
+}
