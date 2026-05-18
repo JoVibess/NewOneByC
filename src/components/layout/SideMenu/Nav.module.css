@@ -1,17 +1,15 @@
 .nav {
-  position: relative;
-  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 100px 40px 50px;
+  padding: 105px 52px 50px;
   height: 100%;
   box-sizing: border-box;
 }
 
 .body {
   display: flex;
-  gap: 10px;
+  gap: 18px;
   flex-direction: column;
 }
 
@@ -20,30 +18,37 @@
   perspective-origin: bottom;
 }
 
-.body a {
-  text-decoration: none;
-  color: var(--background);
-  font-family: var(--font-heading), serif;
-  font-size: clamp(2.6rem, 5vw, 4rem);
-  font-weight: 500;
-  line-height: 0.95;
-  letter-spacing: 0;
+.linkMotion {
+  transform-origin: left bottom;
 }
 
-.footer {
+.body a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--text);
+  font-family: var(--font-heading), serif;
+  font-size: clamp(3rem, 4vw, 3.75rem);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: 0;
+  white-space: nowrap;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navHoverReady .body a:hover {
+  transform: translateX(10px);
+}
+
+.contact {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 0;
+  gap: 0.7rem 2rem;
 }
 
-.footer div {
-  width: 50%;
-}
-
-.footer a {
-  color: rgba(254, 249, 239, 0.72);
-  font-size: 0.82rem;
-  font-weight: 600;
+.contact a {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -53,7 +58,18 @@
     padding: 92px 28px 38px;
   }
 
-  .footer div {
-    width: 100%;
+  .body {
+    gap: 12px;
+  }
+
+  .body a {
+    font-size: clamp(2.45rem, 12vw, 3.75rem);
+    line-height: 1;
+    white-space: normal;
+  }
+
+  .contact {
+    display: grid;
+    gap: 0.7rem;
   }
 }

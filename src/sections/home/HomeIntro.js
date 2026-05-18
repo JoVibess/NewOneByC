@@ -5,8 +5,8 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function HomeIntro({ dictionary }) {
   return (
-    <section className="panel-section">
-      <Container narrow>
+    <section className="panel-section home-intro-section">
+      <Container className="home-intro-section__container">
         <Reveal parallax>
           <SectionHeading
             eyebrow="Approche"

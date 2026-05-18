@@ -7,6 +7,51 @@ export const fr = {
     description:
       "Cabinet de biorésonance à Genève, entre approche paramédicale, équilibre énergétique et accompagnement bienveillant."
   },
+  seo: {
+    siteUrl: "https://newonebyc.ch",
+    locale: "fr_CH",
+    alternateLocale: "en",
+    defaultTitle: "Newone By C | Cabinet de biorésonance à Genève",
+    titleTemplate: "%s | Newone By C",
+    pages: {
+      home: {
+        path: "",
+        title: "Cabinet de biorésonance à Genève",
+        description:
+          "Newone By C accompagne votre équilibre énergétique à Genève grâce à la biorésonance, une approche douce, vibratoire et personnalisée."
+      },
+      bioresonance: {
+        path: "bioresonance",
+        title: "La biorésonance à Genève",
+        description:
+          "Comprendre la biorésonance, ses principes, les troubles accompagnés et le déroulement d’une séance au cabinet Newone By C à Genève."
+      },
+      therapeute: {
+        path: "therapeute",
+        title: "Caroline Decroix, thérapeute en biorésonance",
+        description:
+          "Découvrez le parcours de Caroline Decroix, thérapeute en biorésonance à Genève, entre expérience paramédicale, écoute et accompagnement bienveillant."
+      },
+      contact: {
+        path: "contact",
+        title: "Contact et rendez-vous",
+        description:
+          "Contactez Newone By C à Chêne-Bougeries, Genève, pour poser vos questions ou prendre rendez-vous pour une séance de biorésonance."
+      },
+      privacy: {
+        path: "politique-confidentialite",
+        title: "Politique de confidentialité",
+        description:
+          "Politique de confidentialité du site Newone By C : données traitées, contact par email et droits des visiteurs."
+      },
+      legal: {
+        path: "mentions-legales",
+        title: "Mentions légales",
+        description:
+          "Mentions légales du site Newone By C, cabinet de biorésonance à Chêne-Bougeries, Genève."
+      }
+    }
+  },
   nav: [
     { href: "/fr", label: "Accueil" },
     { href: "/fr/bioresonance", label: "La biorésonance" },
@@ -15,20 +60,33 @@ export const fr = {
   ],
   footer: {
     contactTitle: "Me contacter",
-    legal: "Newone By C 2024 © Politique de confidentialité – Mentions légales",
-    credits: "Site nouvelle génération conçu pour préparer la refonte."
+    preTitle: "Et si votre corps avait besoin d’être écouté ?",
+    preAccent: "écouté ?",
+    preDescription: "La biorésonance propose une lecture douce de vos déséquilibres pour amorcer un retour vers plus d’harmonie.",
+    ctaTitle: "Reconnectez votre corps à son équilibre naturel",
+    ctaDescription:
+      "Vous souhaitez comprendre ce que la biorésonance peut vous apporter ? Échangeons sur vos besoins et préparons un accompagnement adapté.",
+    copyright: "Newone By C 2024 ©",
+    legalLinks: [
+      { href: "/fr/politique-confidentialite", label: "Politique de confidentialité" },
+      { href: "/fr/mentions-legales", label: "Mentions légales" }
+    ],
+    creditsPrefix: "Site internet créé par",
+    creditsName: "Joey Decroix",
+    creditsUrl: "https://joeydecroix.com"
   },
   ctas: {
     contact: "Me contacter",
     discover: "Découvrir la biorésonance",
     learnMore: "En savoir plus",
-    book: "Prendre contact"
+    book: "Prendre rendez-vous"
   },
   home: {
     hero: {
       eyebrow: "Cabinet de biorésonance à Genève",
       title: "Retrouvez votre bien-être",
-      titleAccent: "avec la biorésonance.",
+      titleConnector: "avec la",
+      titleAccent: "biorésonance.",
       description:
         "Équilibrage énergétique, thérapie vibratoire, diagnostic personnalisé. Une approche douce, sobre et professionnelle pour reconnecter votre corps à son harmonie."
     },
@@ -217,25 +275,122 @@ export const fr = {
       eyebrow: "Prendre rendez-vous",
       title: "La biorésonance vous intéresse ?",
       description:
-        "Pour en savoir plus ou prendre rendez-vous, contactez-moi par téléphone, par email ou via ce formulaire de première prise de contact."
+        "Pour en savoir plus ou prendre rendez-vous, contactez-moi directement par téléphone ou par email."
     },
     detailsTitle: "Coordonnées du cabinet",
-    formTitle: "Formulaire de contact",
-    formNote:
-      "Cette maquette intègre déjà la structure visuelle du formulaire. L’envoi peut ensuite être relié à votre solution de messagerie préférée.",
-    formLabels: {
-      firstName: "Prénom",
-      lastName: "Nom",
-      phone: "Tél.",
-      email: "E-mail",
-      message: "Message",
-      submit: "Envoyer"
-    }
+    emailTitle: "Écrire au cabinet",
+    emailButton: "Envoyer un email",
+    emailSubject: "Demande de rendez-vous - Newone By C",
+    mapTitle: "Plan d’accès"
   },
   contactDetails: {
     addressLines: ["Chemin de la fontaine 8", "1224 Chêne-Bougeries, Genève", "Suisse"],
     email: "newonebyc@gmail.com",
     phone: "+41 07 66 08 27 66",
     mapLabel: "Chemin de la fontaine 8, 1224 Chêne-Bougeries"
+  },
+  legalPages: {
+    privacy: {
+      eyebrow: "Confidentialité",
+      title: "Politique de confidentialité",
+      updatedAt: "Dernière mise à jour : 2026",
+      intro:
+        "Cette politique explique comment le site Newone By C traite les informations des visiteurs. Le site a été conçu pour limiter la collecte de données : aucun formulaire de contact n’est utilisé et aucune donnée de santé n’est demandée en ligne.",
+      sections: [
+        {
+          title: "Responsable du site",
+          paragraphs: [
+            "Le site présente les prestations du cabinet Newone By C, situé à Chêne-Bougeries, Genève, Suisse.",
+            "Pour toute question relative à la confidentialité, vous pouvez écrire à l’adresse email du cabinet."
+          ]
+        },
+        {
+          title: "Données collectées",
+          paragraphs: [
+            "Le site ne collecte pas directement de données personnelles via formulaire. Le bouton de contact ouvre votre logiciel de messagerie avec l’adresse du cabinet pré-renseignée.",
+            "Si vous envoyez un email, les informations transmises volontairement dans votre message sont traitées uniquement afin de répondre à votre demande."
+          ]
+        },
+        {
+          title: "Finalités",
+          paragraphs: [
+            "Les données communiquées par email sont utilisées pour répondre à une question, organiser un rendez-vous ou assurer un suivi lié à votre demande.",
+            "Aucune donnée n’est vendue, louée ou transmise à des tiers à des fins commerciales."
+          ]
+        },
+        {
+          title: "Conservation",
+          paragraphs: [
+            "Les échanges par email sont conservés uniquement pendant la durée nécessaire au traitement de la demande et au suivi de la relation avec le cabinet."
+          ]
+        },
+        {
+          title: "Services externes",
+          paragraphs: [
+            "Le site peut contenir des liens vers des services externes, notamment Google Maps ou des avis Google. Ces services disposent de leurs propres politiques de confidentialité.",
+            "En cliquant sur un lien externe, vous quittez le site Newone By C."
+          ]
+        },
+        {
+          title: "Vos droits",
+          paragraphs: [
+            "Vous pouvez demander l’accès, la rectification ou la suppression des informations que vous avez transmises par email, dans les limites prévues par la loi applicable.",
+            "Pour exercer ces droits, contactez le cabinet à l’adresse email indiquée sur le site."
+          ]
+        }
+      ]
+    },
+    legal: {
+      eyebrow: "Informations légales",
+      title: "Mentions légales",
+      updatedAt: "Dernière mise à jour : 2026",
+      intro:
+        "Les présentes mentions légales présentent les informations relatives au site Newone By C.",
+      sections: [
+        {
+          title: "Éditeur du site",
+          paragraphs: [
+            "Newone By C",
+            "Cabinet de biorésonance à Genève",
+            "Chemin de la fontaine 8, 1224 Chêne-Bougeries, Genève, Suisse",
+            "Email : newonebyc@gmail.com",
+            "Téléphone : +41 07 66 08 27 66"
+          ]
+        },
+        {
+          title: "Responsable de publication",
+          paragraphs: [
+            "Le responsable de publication est le représentant du cabinet Newone By C. Cette mention pourra être complétée avec le nom légal exact de l’exploitant si nécessaire."
+          ]
+        },
+        {
+          title: "Création du site",
+          paragraphs: [
+            "Site internet créé par Joey Decroix.",
+            "https://joeydecroix.com"
+          ]
+        },
+        {
+          title: "Propriété intellectuelle",
+          paragraphs: [
+            "Les contenus présents sur le site, notamment les textes, visuels, éléments graphiques, structure et identité visuelle, sont protégés par le droit d’auteur.",
+            "Toute reproduction ou utilisation sans autorisation préalable est interdite."
+          ]
+        },
+        {
+          title: "Responsabilité",
+          paragraphs: [
+            "Les informations présentées sur ce site sont fournies à titre informatif et ne remplacent pas un avis médical, un diagnostic ou un traitement prescrit par un professionnel de santé.",
+            "Newone By C s’efforce de maintenir les informations à jour, mais ne peut garantir l’absence d’erreurs ou d’omissions."
+          ]
+        },
+        {
+          title: "Liens externes",
+          paragraphs: [
+            "Le site peut contenir des liens vers des sites ou services tiers. Newone By C n’est pas responsable du contenu ou des pratiques de confidentialité de ces services externes."
+          ]
+        }
+      ]
+    }
   }
 };

@@ -1,9 +1,9 @@
 export const perspective = {
   initial: {
     opacity: 0,
-    rotateX: 90,
+    rotateX: 30,
     translateY: 80,
-    translateX: -20
+    translateX: -42
   },
   enter: (i) => ({
     opacity: 1,

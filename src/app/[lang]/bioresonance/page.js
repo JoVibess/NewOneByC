@@ -1,12 +1,20 @@
 import ButtonLink from "@/components/ui/ButtonLink";
 import Container from "@/components/ui/Container";
-import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
+import FigureImage from "@/components/ui/FigureImage";
 import PageShell from "@/components/layout/PageShell";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
+import SymptomsExplorer from "@/components/ui/SymptomsExplorer";
 import PageHero from "@/sections/shared/PageHero";
 import { getDictionary } from "@/data";
 import { isLocale } from "@/lib/i18n";
+import { createPageMetadata } from "@/lib/seo";
+
+export async function generateMetadata({ params }) {
+  const resolved = await params;
+
+  return createPageMetadata(resolved.lang, "bioresonance");
+}
 
 export default async function BioresonancePage({ params }) {
   const resolved = await params;
@@ -23,6 +31,13 @@ export default async function BioresonancePage({ params }) {
         <PageHero
           eyebrow={dictionary.bioresonance.hero.eyebrow}
           title={dictionary.bioresonance.hero.title}
+          aside={
+            <FigureImage
+              src="/images/scan-bioresonance.webp"
+              alt={dictionary.bioresonance.hero.title}
+              ratio="portrait"
+            />
+          }
         >
           <div className="page-hero__text">
             {dictionary.bioresonance.hero.paragraphs.map((paragraph) => (
@@ -32,7 +47,14 @@ export default async function BioresonancePage({ params }) {
         </PageHero>
 
         <section className="content-section">
-          <Container className="two-column">
+          <Container className="two-column two-column--mobile-text-first">
+            <Reveal delay={0.12}>
+              <FigureImage
+                src="/images/seance-bioresonance.webp"
+                alt={dictionary.bioresonance.consultation.title}
+                ratio="portrait"
+              />
+            </Reveal>
             <Reveal parallax>
               <SectionHeading title={dictionary.bioresonance.consultation.title} />
               <div className="stacked-copy">
@@ -41,34 +63,18 @@ export default async function BioresonancePage({ params }) {
                 ))}
               </div>
             </Reveal>
-            <Reveal delay={0.12}>
-              <ImagePlaceholder ratio="portrait" label="Photo consultation" />
-            </Reveal>
           </Container>
         </section>
 
         <section className="symptoms-section">
           <Container>
-            <Reveal parallax>
-              <SectionHeading title={dictionary.bioresonance.symptomsTitle} />
+            <Reveal>
+              <SymptomsExplorer
+                title={dictionary.bioresonance.symptomsTitle}
+                groups={dictionary.bioresonance.symptomGroups}
+                locale={locale}
+              />
             </Reveal>
-            <div className="symptoms-grid">
-              {dictionary.bioresonance.symptomGroups.map((group, index) => (
-                <Reveal key={group.title} delay={index * 0.04} parallax>
-                  <article className="symptom-card">
-                    <span className="symptom-card__index">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <h3>{group.title}</h3>
-                    <ul>
-                      {group.items.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
           </Container>
         </section>
 

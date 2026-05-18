@@ -1,10 +1,17 @@
 import PageShell from "@/components/layout/PageShell";
 import Container from "@/components/ui/Container";
-import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
+import FigureImage from "@/components/ui/FigureImage";
 import Reveal from "@/components/ui/Reveal";
-import PageHero from "@/sections/shared/PageHero";
+import StretchReveal from "@/components/ui/StretchReveal";
 import { getDictionary } from "@/data";
 import { isLocale } from "@/lib/i18n";
+import { createPageMetadata } from "@/lib/seo";
+
+export async function generateMetadata({ params }) {
+  const resolved = await params;
+
+  return createPageMetadata(resolved.lang, "therapeute");
+}
 
 export default async function TherapistPage({ params }) {
   const resolved = await params;
@@ -14,26 +21,30 @@ export default async function TherapistPage({ params }) {
   return (
     <PageShell dictionary={dictionary} locale={locale} currentPath={`/${locale}/therapeute`}>
       <main>
-        <PageHero eyebrow={dictionary.therapist.hero.eyebrow} title={dictionary.therapist.hero.title} />
-
-        <section className="content-section">
+        <section className="therapist-profile-section">
           <Container className="two-column">
             <Reveal className="stacked-copy" parallax>
+              <p className="eyebrow">{dictionary.therapist.hero.eyebrow}</p>
+              <h1>{dictionary.therapist.hero.title}</h1>
               {dictionary.therapist.hero.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </Reveal>
             <Reveal delay={0.12}>
-              <ImagePlaceholder ratio="portrait" label="Portrait Caroline Decroix" />
+              <FigureImage
+                src="/images/profil.webp"
+                alt="Portrait de Caroline Decroix"
+                ratio="portrait"
+              />
             </Reveal>
           </Container>
         </section>
 
         <section className="quote-band">
-          <Container narrow>
-            <Reveal parallax>
+          <Container>
+            <StretchReveal>
               <p>{dictionary.therapist.signature}</p>
-            </Reveal>
+            </StretchReveal>
           </Container>
         </section>
       </main>

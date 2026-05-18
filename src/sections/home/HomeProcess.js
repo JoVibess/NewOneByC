@@ -1,10 +1,17 @@
 "use client";
 
+import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const stepImages = {
+  "01": "/images/rencontre.webp",
+  "02": "/images/bilan.webp",
+  "03": "/images/traitement.webp"
+};
 
 export default function HomeProcess({ dictionary }) {
   const wrapRef = useRef(null);
@@ -83,17 +90,25 @@ export default function HomeProcess({ dictionary }) {
               <section key={step.index} className="steps-panel">
                 <div className="steps-panel__inner">
                   <div className="steps-panel__content">
+                    <span className="steps-panel__ghost-index" aria-hidden="true">
+                      {step.index}
+                    </span>
                     <p className="steps-panel__eyebrow">
                       {dictionary.home.process.title}
                     </p>
-                    <span className="steps-panel__index">{step.index}</span>
                     <h2>{step.title}</h2>
                     <p>{step.description}</p>
                   </div>
 
                   <div className="steps-panel__visual">
                     <div className="steps-panel__image-placeholder">
-                      <span>{`Image ${step.title}`}</span>
+                      <Image
+                        src={stepImages[step.index]}
+                        alt={step.title}
+                        fill
+                        sizes="(max-width: 980px) 78vw, 46vw"
+                        className="steps-panel__image"
+                      />
                     </div>
                   </div>
                 </div>

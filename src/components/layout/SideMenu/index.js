@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import Button from "./Button";
@@ -9,7 +10,7 @@ import styles from "./SideMenu.module.css";
 
 const menu = {
   open: {
-    width: "480px",
+    width: "620px",
     height: "650px",
     top: "-25px",
     right: "-25px",
@@ -24,11 +25,45 @@ const menu = {
   }
 };
 
-export default function SideMenu({ links, footerLinks }) {
+export default function SideMenu({
+  links,
+  contactDetails,
+  locale,
+  alternateLocale,
+  alternatePath,
+  glassActive = false
+}) {
   const [isActive, setIsActive] = useState(false);
+  const rootRef = useRef(null);
+
+  useEffect(() => {
+    if (!isActive) {
+      return;
+    }
+
+    const handlePointerDown = (event) => {
+      if (rootRef.current && !rootRef.current.contains(event.target)) {
+        setIsActive(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+    };
+  }, [isActive]);
 
   return (
-    <header className={styles.header}>
+    <header
+      ref={rootRef}
+      className={`${styles.header} ${glassActive ? styles.headerGlass : styles.headerSolid}`}
+    >
+      <Link className={styles.languageSwitch} href={alternatePath}>
+        <span>{locale.toUpperCase()}</span>
+        <span>/</span>
+        <span>{alternateLocale.toUpperCase()}</span>
+      </Link>
       <motion.div
         className={styles.menu}
         variants={menu}
@@ -39,13 +74,17 @@ export default function SideMenu({ links, footerLinks }) {
           {isActive ? (
             <Nav
               links={links}
-              footerLinks={footerLinks}
+              contactDetails={contactDetails}
               onNavigate={() => setIsActive(false)}
             />
           ) : null}
         </AnimatePresence>
       </motion.div>
-      <Button isActive={isActive} toggleMenu={() => setIsActive(!isActive)} />
+      <Button
+        isActive={isActive}
+        toggleMenu={() => setIsActive(!isActive)}
+        glassActive={glassActive}
+      />
     </header>
   );
 }

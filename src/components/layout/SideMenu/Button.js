@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 
 import styles from "./Button.module.css";
 
-export default function Button({ isActive, toggleMenu }) {
+export default function Button({ isActive, toggleMenu, glassActive = false }) {
   return (
     <button
-      className={styles.button}
+      className={`${styles.button} ${glassActive ? styles.buttonGlass : ""}`}
       type="button"
       onClick={toggleMenu}
       aria-expanded={isActive}
