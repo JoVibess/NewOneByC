@@ -286,7 +286,7 @@ export const fr = {
   contactDetails: {
     addressLines: ["Chemin de la fontaine 8", "1224 Chêne-Bougeries, Genève", "Suisse"],
     email: "newonebyc@gmail.com",
-    phone: "+41 07 66 08 27 66",
+    phone: "+41 7 66 08 27 66",
     mapLabel: "Chemin de la fontaine 8, 1224 Chêne-Bougeries"
   },
   legalPages: {
@@ -354,7 +354,7 @@ export const fr = {
             "Cabinet de biorésonance à Genève",
             "Chemin de la fontaine 8, 1224 Chêne-Bougeries, Genève, Suisse",
             "Email : newonebyc@gmail.com",
-            "Téléphone : +41 07 66 08 27 66"
+            "Téléphone : +41 7 66 08 27 66"
           ]
         },
         {

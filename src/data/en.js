@@ -196,7 +196,7 @@ export const en = {
   contactDetails: {
     addressLines: ["Chemin de la fontaine 8", "1224 Chêne-Bougeries, Geneva", "Switzerland"],
     email: "newonebyc@gmail.com",
-    phone: "+41 07 66 08 27 66",
+    phone: "+41 7 66 08 27 66",
     mapLabel: "Chemin de la fontaine 8, 1224 Chêne-Bougeries"
   },
   legalPages: {
@@ -264,7 +264,7 @@ export const en = {
             "Bioresonance practice in Geneva",
             "Chemin de la fontaine 8, 1224 Chêne-Bougeries, Geneva, Switzerland",
             "Email: newonebyc@gmail.com",
-            "Phone: +41 07 66 08 27 66"
+            "Phone: +41 7 66 08 27 66"
           ]
         },
         {

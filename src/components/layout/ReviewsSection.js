@@ -170,9 +170,6 @@ export default function ReviewsSection({ reviews, locale = "fr" }) {
       startX: event.clientX,
       scrollLeft: node.scrollLeft
     };
-
-    node.classList.add("is-dragging");
-    node.setPointerCapture(event.pointerId);
   };
 
   const handlePointerMove = (event) => {
@@ -183,16 +180,15 @@ export default function ReviewsSection({ reviews, locale = "fr" }) {
       return;
     }
 
-    event.preventDefault();
-
     const distance = event.clientX - dragState.startX;
 
     if (Math.abs(distance) > 5) {
       dragState.hasMoved = true;
+      node.classList.add("is-dragging");
+      event.preventDefault();
+      node.scrollLeft = dragState.scrollLeft - distance;
+      normalizeLoopPosition(node);
     }
-
-    node.scrollLeft = dragState.scrollLeft - distance;
-    normalizeLoopPosition(node);
   };
 
   const stopDragging = (event) => {
@@ -213,7 +209,7 @@ export default function ReviewsSection({ reviews, locale = "fr" }) {
       node.classList.remove("is-dragging");
     }
 
-    if (node.hasPointerCapture(event.pointerId)) {
+    if (node.hasPointerCapture?.(event.pointerId)) {
       node.releasePointerCapture(event.pointerId);
     }
   };
@@ -249,7 +245,7 @@ export default function ReviewsSection({ reviews, locale = "fr" }) {
         <div
           ref={carouselRef}
           className="reviews-carousel"
-          onPointerDownCapture={handlePointerDown}
+          onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={stopDragging}
           onPointerCancel={stopDragging}
