@@ -1,13 +1,13 @@
 .header {
   position: fixed;
-  right: max(var(--content-gutter), calc((100vw - var(--content-max)) / 2));
+  right: calc(max(var(--content-gutter), calc((100vw - 1400px) / 2)) + 28px);
   top: 50px;
   z-index: 100;
 }
 
 .headerSolid {
   top: 22px;
-  right: max(var(--content-gutter), calc((100vw - var(--content-max)) / 2));
+  right: max(var(--content-gutter), calc((100vw - 1400px) / 2));
 }
 
 .languageSwitch {

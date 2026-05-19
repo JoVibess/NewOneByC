@@ -19,6 +19,8 @@ export default function HomeProcess({ dictionary }) {
   const spacerRef = useRef(null);
 
   useLayoutEffect(() => {
+    let media = null;
+
     const context = gsap.context(() => {
       const wrap = wrapRef.current;
       const track = trackRef.current;
@@ -34,49 +36,61 @@ export default function HomeProcess({ dictionary }) {
         return;
       }
 
+      media = gsap.matchMedia();
       const distance = () => Math.max(0, track.scrollWidth - window.innerWidth);
 
       const syncSpacerHeight = () => {
         spacer.style.height = `${distance()}px`;
       };
 
-      syncSpacerHeight();
+      media.add("(min-width: 981px)", () => {
+        syncSpacerHeight();
 
-      gsap.to(track, {
-        x: () => -distance(),
-        ease: "none",
-        scrollTrigger: {
-          trigger: wrap,
-          start: "top top",
-          end: () => `+=${distance()}`,
-          scrub: 1,
-          invalidateOnRefresh: true,
-          snap: {
-            snapTo: 1 / (panels.length - 1),
-            duration: { min: 0.2, max: 0.45 },
-            delay: 0.05,
-            directional: true,
-            ease: "power2.out"
+        const tween = gsap.to(track, {
+          x: () => -distance(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: wrap,
+            start: "top top",
+            end: () => `+=${distance()}`,
+            scrub: 1,
+            invalidateOnRefresh: true,
+            snap: {
+              snapTo: 1 / (panels.length - 1),
+              duration: { min: 0.2, max: 0.45 },
+              delay: 0.05,
+              directional: true,
+              ease: "power2.out"
+            }
           }
-        }
+        });
+
+        const handleResize = () => {
+          syncSpacerHeight();
+          ScrollTrigger.refresh();
+        };
+
+        ScrollTrigger.addEventListener("refreshInit", syncSpacerHeight);
+        window.addEventListener("resize", handleResize);
+        ScrollTrigger.refresh();
+
+        return () => {
+          tween.kill();
+          spacer.style.height = "0px";
+          ScrollTrigger.removeEventListener("refreshInit", syncSpacerHeight);
+          window.removeEventListener("resize", handleResize);
+        };
       });
 
-      const handleResize = () => {
-        syncSpacerHeight();
-        ScrollTrigger.refresh();
-      };
+      media.add("(max-width: 980px)", () => {
+        gsap.set(track, { clearProps: "transform" });
+        spacer.style.height = "0px";
+      });
 
-      ScrollTrigger.addEventListener("refreshInit", syncSpacerHeight);
-      window.addEventListener("resize", handleResize);
-      ScrollTrigger.refresh();
-
-      return () => {
-        ScrollTrigger.removeEventListener("refreshInit", syncSpacerHeight);
-        window.removeEventListener("resize", handleResize);
-      };
     }, wrapRef);
 
     return () => {
+      media?.revert();
       context.revert();
     };
   }, []);

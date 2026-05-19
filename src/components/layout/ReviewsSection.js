@@ -164,6 +164,17 @@ export default function ReviewsSection({ reviews, locale = "fr" }) {
       window.clearTimeout(snapTimeoutRef.current);
     }
 
+    if (autoScrollFrameRef.current) {
+      window.cancelAnimationFrame(autoScrollFrameRef.current);
+    }
+
+    if (autoScrollTimeoutRef.current) {
+      window.clearTimeout(autoScrollTimeoutRef.current);
+    }
+
+    node.classList.remove("is-auto-scrolling");
+    node.setPointerCapture?.(event.pointerId);
+
     dragStateRef.current = {
       isDragging: true,
       hasMoved: false,

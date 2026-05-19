@@ -2,15 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import SideMenu from "@/components/layout/SideMenu";
 
 export default function SiteHeader({ dictionary, locale, currentPath }) {
-  const [isHeroHeader, setIsHeroHeader] = useState(false);
   const alternateLocale = locale === "fr" ? "en" : "fr";
   const alternatePath = currentPath.replace(`/${locale}`, `/${alternateLocale}`);
   const isHome = currentPath === `/${locale}`;
+  const [isHeroHeader, setIsHeroHeader] = useState(isHome);
+  const isHeroHeaderRef = useRef(isHome);
+  const headerIsHero = isHome && isHeroHeader;
   const links = dictionary.nav.map((item) => ({
     href: item.href,
     title: item.label
@@ -18,18 +20,28 @@ export default function SiteHeader({ dictionary, locale, currentPath }) {
 
   useEffect(() => {
     if (!isHome) {
+      isHeroHeaderRef.current = false;
       return;
     }
 
     let animationFrame = null;
+    let heroSwitchPoint = window.innerHeight;
+
+    const measureHero = () => {
+      const hero = document.querySelector(".hero-section");
+
+      heroSwitchPoint = hero
+        ? hero.offsetTop + hero.offsetHeight - 80
+        : window.innerHeight;
+    };
 
     const updateHeader = () => {
-      const hero = document.querySelector(".hero-section");
-      const heroBottom = hero
-        ? hero.getBoundingClientRect().bottom + window.scrollY
-        : window.innerHeight;
+      const shouldUseHeroHeader = window.scrollY < heroSwitchPoint;
 
-      setIsHeroHeader(window.scrollY < heroBottom - 30);
+      if (shouldUseHeroHeader !== isHeroHeaderRef.current) {
+        isHeroHeaderRef.current = shouldUseHeroHeader;
+        setIsHeroHeader(shouldUseHeroHeader);
+      }
     };
 
     const scheduleUpdate = () => {
@@ -40,9 +52,15 @@ export default function SiteHeader({ dictionary, locale, currentPath }) {
       animationFrame = window.requestAnimationFrame(updateHeader);
     };
 
+    const handleResize = () => {
+      measureHero();
+      scheduleUpdate();
+    };
+
+    measureHero();
     scheduleUpdate();
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       if (animationFrame) {
@@ -50,18 +68,18 @@ export default function SiteHeader({ dictionary, locale, currentPath }) {
       }
 
       window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("resize", handleResize);
     };
   }, [isHome]);
 
   return (
     <>
       <div
-        className={`site-header-bar ${isHeroHeader ? "site-header-bar--glass" : "site-header-bar--solid"}`}
+        className={`site-header-bar ${headerIsHero ? "site-header-bar--glass" : "site-header-bar--solid"}`}
         aria-hidden="true"
       />
       <Link
-        className={`site-logo-link ${isHeroHeader ? "site-logo-link--glass" : "site-logo-link--solid"}`}
+        className={`site-logo-link ${headerIsHero ? "site-logo-link--glass" : "site-logo-link--solid"}`}
         href={`/${locale}`}
         aria-label={dictionary.site.name}
       >
@@ -89,7 +107,7 @@ export default function SiteHeader({ dictionary, locale, currentPath }) {
         locale={locale}
         alternateLocale={alternateLocale}
         alternatePath={alternatePath}
-        glassActive={isHeroHeader}
+        glassActive={headerIsHero}
       />
     </>
   );

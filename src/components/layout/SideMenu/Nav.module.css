@@ -27,7 +27,7 @@
   text-decoration: none;
   color: var(--text);
   font-family: var(--font-heading), serif;
-  font-size: clamp(3rem, 4vw, 3.75rem);
+  font-size: clamp(2.875rem, 4vw, 3.75rem);
   font-weight: 300;
   line-height: 1.02;
   letter-spacing: 0;
@@ -63,7 +63,7 @@
   }
 
   .body a {
-    font-size: clamp(2.45rem, 12vw, 3.75rem);
+    font-size: clamp(2.45rem, 10vw, 2.875rem);
     line-height: 1;
     white-space: normal;
   }
